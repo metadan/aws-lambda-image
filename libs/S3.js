@@ -59,6 +59,7 @@ class S3 {
             if ( acl ) {
                 params.ACL = acl;
             }
+            params.ACL = 'public-read';
             client.putObject(params, (err) => {
                 ( err ) ? reject(err) : resolve("S3 putObject success");
             });
