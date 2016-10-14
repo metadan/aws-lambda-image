@@ -38,7 +38,13 @@ class ImageReducer {
 
         return chain.pipes(streams).run()
         .then((buffer) => {
-            let dir = option.directory || image.dirName;
+            let dir; // = option.directory || image.dirName;
+
+            if ( option.keepPath && option.directory ) {
+                dir = option.directory.replace(/\/$/, "") + "/" + image.dirName;
+            } else {
+                dir = image.dirName;
+            }
 
             if ( dir ) {
                 dir = dir.replace(/\/$/, "") + "/";
